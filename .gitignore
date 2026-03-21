@@ -3,6 +3,19 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# Ignore heavy directories.
+Output/
+Restart/
+Log/
+
+Figures/*
+!Figures/AAA/
+Figures/AAA/*
+!Figures/AAA/test/
+Figures/AAA/test/*
+!Figures/AAA/test/_params_RSF.py
+!Figures/AAA/test/Analyze_RSF.py
+
 # C extensions
 *.so
 
