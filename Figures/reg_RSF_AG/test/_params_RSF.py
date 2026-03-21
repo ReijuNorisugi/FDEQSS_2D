@@ -22,7 +22,7 @@ from sbiem_modules.kernel import set_coordinate as setc
 
 
 #################   Flags to change the computatinal mode and output conditions.    ###############
-Initial = True  # True: You can check parameter settings without runnning the whole simulation.
+Initial = False  # True: You can check parameter settings without runnning the whole simulation.
 act_res = True   # True: Save files for restarting.
 mirror = True   # True: Hlaf infinite-space like Lapusta et al. (2000).
 qd = False       # False: Fully-dynamic simulation.  True: Quasi-dynamic simulation.
