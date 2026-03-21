@@ -9,12 +9,12 @@ Restart/
 Log/
 
 Figures/*
-!Figures/AAA/
-Figures/AAA/*
-!Figures/AAA/test/
-Figures/AAA/test/*
-!Figures/AAA/test/_params_RSF.py
-!Figures/AAA/test/Analyze_RSF.py
+!Figures/*/
+Figures/*/*
+!Figures/*/test/
+Figures/*/test/*
+!Figures/*/test/_params_RSF.py
+!Figures/*/test/Analyze_RSF.py
 
 # C extensions
 *.so
