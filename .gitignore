@@ -10,7 +10,6 @@ Log/
 
 Figures/*
 !Figures/*/
-Figures/*/*
 !Figures/*/test/
 Figures/*/test/*
 !Figures/*/test/_params_RSF.py
