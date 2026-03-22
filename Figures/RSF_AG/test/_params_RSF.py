@@ -24,7 +24,7 @@ from sbiem_modules.kernel import set_coordinate as setc
 #################   Flags to change the computatinal mode and output conditions.    ###############
 Initial = False  # True: You can check parameter settings without runnning the whole simulation.
 act_res = True   # True: Save files for restarting.
-mirror = True   # True: Hlaf infinite-space like Lapusta et al. (2000).
+mirror = False   # True: Hlaf infinite-space like Lapusta et al. (2000).
 qd = False       # False: Fully-dynamic simulation.  True: Quasi-dynamic simulation.
 mode = 'III'     # Rupture modes I(opening), II(in-plane), III(anti-plane), and IV(crustal plane) are available.
 sparse = True    # Allow dense spatial snapshot at sparse time steps.         !!! Storage consuming !!!
@@ -32,7 +32,7 @@ downsample = 1   # Downsampling for spatially dense output.
 snap_EQ = True   # Allow dense spatial snapshot at before and after an event. !!! Storage consuming !!!
 dense = True     # Allow every time step output on sparse stations.           !!! Storage consuming !!!
 outerror = False  # Output error between full and half step solutions. Ture enforces ['RO'] time-marching scheme.
-Frict = 'reg_RSF_AG' # Choose fault constitutive law. RSF_AG is only available now. reg_RSF_AG is regularized version.
+Frict = 'RSF_AG' # Choose fault constitutive law. RSF_AG is only available now. reg_RSF_AG is regularized version.
 Stepper = 'LR'  # Choose scheme for time step evolution.
                 # Romanet & Ozawa (2022) ['RO'], Lapusta et al. (2000) ['LR'], and constant step ['CS'] are implemented.
 rmPB = True    # True: Remove periodic boundaries. Available for both infinite-scpace and half infinite-space solutions.
@@ -54,7 +54,7 @@ logging.basicConfig(filename='Log{}log_{}.log'.format(fname, datetime.now().strf
 #####################################################################################################
 
 ######   Set tmax   ######
-tmax = 1500. * 365. * 24. * 60. * 60.
+tmax = 1.e9
 ##########################
 
 ###############################   Important   #################################
@@ -87,14 +87,14 @@ num_GPU, device_1 = utils.set_device(num_GPU)
 ################################   Medium parameters   ###############################
 dtype = tr.float64 # Important, dtype for tensor. Do not change.
 
-Cs = 3.464*1.e3 # S-wave velocity (m/s).
-Cp = 5.e3     # P-wave velocity (m/s). 
-rho = 2670.   # Density (kg/m^3).
-mu = rho * (Cs**2) # Rigidity (Pa).
+Cs = 3.e3 # S-wave velocity (m/s).
+Cp = 5.e3 # P-wave velocity (m/s). 
+mu = 30.e9 # Rigidity (Pa).
+rho = mu / (Cs**2)  # Density (kg/m^3).
 nu = 1 - ((Cp/Cs)**2) / (2 * ((Cp/Cs)**2 - 1)) # Poisson's ratio.
 
 f0 = 0.6       # Referrence friction (non-dimentinal).
-V0 = 1.e-6     # Referrence slip rate for standard RSF law (m/s).
+V0 = 1.e-9     # Referrence slip rate for standard RSF law (m/s).
 
 Vpl = 1.e-9     # Loading rate (m/s).
 beta_min = 0.5  # CFL. For defining minimum time step.
@@ -320,8 +320,8 @@ def_del = tr.zeros_like(xp, dtype=dtype, device=device_1) # Slip deficit (m).
 if mirror:
     V += Vpl
 else:
-    W1 = -25.
-    V += Vpl - 0.9 * Vpl / tr.cosh((xp - W1)/1.e3)
+    W1 = -1.e2
+    V += Vpl - 0.9 * Vpl / tr.cosh((xp - W1)/1.e2)
 
 # Assume steady-state shear stress at the initial.
 if Frict == 'reg_RSF_AG':
