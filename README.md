@@ -97,11 +97,11 @@ please checkout a tagged release:
 git checkout v0.2.0
 ```
 
-The correspondance between each tag and version is summarized in tag.txt.
+The correspondance between each tag and version is summarized in Tags at the top.
 
 ## Test run with example scripts
 After installing the docker image and cloning this repository, you can run the example simulaiton.
-At first, let's try the SCEC community benchmark problem BP1-FD.
+At first, let's try [the SCEC community benchmark problem BP1-FD](https://strike.scec.org/cvws/seas/benchmark_descriptions.html).
 It will take a couple of minutes on a laptop.
 
 #### For arm64 machines:
