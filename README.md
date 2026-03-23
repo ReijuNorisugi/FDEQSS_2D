@@ -99,7 +99,7 @@ git checkout v0.2.0
 
 The correspondance between each tag and version is summarized in Tags at the top.
 
-## Test run with example scripts
+## Test run with an example script
 After installing the docker image and cloning this repository, you can run the example simulaiton.  
 At first, let's try [the SCEC community benchmark problem BP1-FD](https://strike.scec.org/cvws/seas/benchmark_descriptions.html).  
 This is mode III problem in a half infinite space. Constitutive law is regularized form of RSF and aging laws.
@@ -136,10 +136,10 @@ docker run --rm \
 The simulation is executed inside the pre-configured Conda environment included in the Docker image.
 
 
-## Check outputs
+## Checking outputs
 When example scripts are properly executed, you can check the log file log_yyyymmdd_hh.log:
 ```bash
-cd /Log/reg_RSF_AG/test
+cd Log/reg_RSF_AG/test
 ```
 
 You will see the following log including simulation condition and time stamp of dynamic events:
@@ -201,6 +201,13 @@ Consuming time 103.62035083770752 sec
 Restart files are saved.
 ```
 
+Outputs are saved in the following directory:
+```bash
+cd ../../..
+cd Output/reg_RSF_AG/test
+```
+
+## Analyze the test example
 
 
 ## References
