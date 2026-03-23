@@ -19,9 +19,9 @@ The code enables long-term simulations of earthquake cycles within a unified phy
 
 The numerical scheme is mainly based on previous works:
 
-- [Lapusta et al. (2000)](https://doi-org/10.1029/2000JB900250)
+- [Lapusta et al. (2000)](https://doi-org.kyoto-u.idm.oclc.org/10.1029/2000JB900250)
 - [Noda (2021)](https://doi.org/10.1186/s40623-021-01465-6)
-- [Romanet & Ozawa (2022)](https://doi-org/10.1785/0120210178)
+- [Romanet & Ozawa (2022)](https://doi-org.kyoto-u.idm.oclc.org/10.1785/0120210178)
 
 This code is designed for **research use**, with a focus on:
 
