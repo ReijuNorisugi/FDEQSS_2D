@@ -7,27 +7,27 @@ PyTorch-based numerical simulation code for 2D Fully Dynamic Earthquake Sequence
 
 This repository provides a numerical simulation framework for **fully dynamic earthquake sequence simulations** by coupling:
 
-- elastodynamic wave propagation
-- rate-and-state friction laws
+- Elastodynamics
+- Rate-and-state friction laws
 
 The code enables long-term simulations of earthquake cycles within a unified physical framework, including:
 
-- inter-seismic stress accumulation  
-- spontaneous nucleation of dynamic events  
-- dynamic rupture propagation  
-- post-seismic relaxation  
+- Inter-seismic stress accumulation
+- Spontaneous nucleation of dynamic events
+- Dynamic rupture propagation
+- Post-seismic relaxation
 
 The numerical scheme is mainly based on previous works:
 
-- Lapusta et al. (2000)  
-- Noda (2021)  
-- Romanet & Ozawa (2022)
+- [Lapusta et al. (2000)](https://doi-org.kyoto-u.idm.oclc.org/10.1029/2000JB900250)
+- [Noda (2021)](https://doi.org/10.1186/s40623-021-01465-6)
+- [Romanet & Ozawa (2022)](https://doi.org/10.1186/s40623-021-01465-6)
 
 This code is designed for **research use**, with a focus on:
 
-- flexibility
-- reproducibility
-- computational efficiency
+- Flexibility
+- Reproducibility
+- Computational efficiency
 
 It supports rapid prototyping of new physical models and is suitable for large-scale simulations on modern hardware.
 
