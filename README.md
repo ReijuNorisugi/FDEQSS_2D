@@ -138,8 +138,7 @@ FDEQSS_2D/                     # Home directory for simulation.
 ├── Log/                      # Simulation logs (generated automatically).
 │   └── reg_RSF_AG/
 │       └── test/
-│
-└── README.md
+└──
 ```
 
 ## Test run with an example script
