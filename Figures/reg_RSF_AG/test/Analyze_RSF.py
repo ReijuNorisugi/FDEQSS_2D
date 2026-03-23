@@ -31,11 +31,11 @@ while current != target and current != os.path.dirname(current):
 
 # Choose which to plot. When EQ_num is large, Dyn_snap is time-consuming.
 Slip_V_cmap     = True
-Check           = True
-Trajectory      = True
-Dyn_snap        = True
-EQ_before_after = True
-Summary         = True
+Check           = False
+Trajectory      = False
+Dyn_snap        = False
+EQ_before_after = False
+Summary         = False
 
 yr2sec = 365.*24.*60.*60.
 day2sec = 24.*60.*60.
@@ -44,11 +44,11 @@ min2sec = 60.
 # Duration for coseismic snapshots.
 duration = 0.5 # sec.
 # Duration for aseismic snapshots.
-duration_ = 2  # year.
+duration_ = 10.  # year.
 duration_ = duration_ * yr2sec
 
 # How many events you want to show in a snapshot?
-plot_num = 6
+plot_num = 9
 reduce = 1  # You can reduce data points for contour if it is too heavy.
 
 ###########   Load parameters used in simulation.   ###########
@@ -328,7 +328,33 @@ if Slip_V_cmap:
             plt.tight_layout()
             plt.savefig('{}Figures{}Slip_V_cmap/Slip_{}.png'.format(rel, fname, j), dpi=600)
             plt.close()
-        
+
+            
+            figsize = (3.25, 1.375)
+            fig, ax = plt.subplots(figsize=figsize)
+            plt.tricontourf(triangulation, color, cmap=blue_orange, levels=64, vmin=vmin, vmax=vmax)
+            ax.plot(out_delta[id_cos].T, xp, color='black', linestyle='dashed', lw=0.5, label='Every {}s'.format(duration))
+            ax.plot(out_delta[id_end].T, xp, color='black', linestyle='solid', lw=0.5, label='Total slip')
+            ax.plot(out_delta[id_ass].T, xp, color='black', linestyle='solid', lw=0.5, label='Every {}yr'.format(int(duration_/yr2sec)))
+            ax.set_xlim(10, 30)
+            ax.set_ylim(np.min(xp), np.max(xp))
+            ax.invert_yaxis()
+            plt.xticks([])
+            plt.yticks([])
+            ax.axis('off')
+            fig.subplots_adjust(0, 0, 1, 1)
+            plt.savefig(
+                '{}Figures{}Slip_V_cmap/Slip_tmp.png'.format(rel, fname),
+                dpi=450,
+                bbox_inches='tight',
+                pad_inches=0,
+            )
+            plt.close()
+
+
+
+
+            #############################################
         
             fig, ax = plt.subplots(figsize=figsize)
             if mirror:

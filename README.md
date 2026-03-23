@@ -1,6 +1,8 @@
 # FDEQSS_2D
 PyTorch-based numerical simulation code for 2D Fully Dynamic Earthquake Sequence Simulation.
 
+![](sbiem_modules/zzz/top.png)
+
 ## Overview
 This repository provides a numerical simulation framework to simulate fully dynamic earthquake sequences by coupling the elasticity and rate-and-state friction laws.  The code enalbes a long term simulation of earthquake sequence, including inter-seismic stress accumulation, spontaneous nucleation of dynamic events, dynamic rupture propagation, and post-seismic relaxation, within a unified physical framework. The numerical scheme is mainly based on the previous works Lapusta et al. (2000), Noda (2021), and Romanet & Ozawa (2022).
 
