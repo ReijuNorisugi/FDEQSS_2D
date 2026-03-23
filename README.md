@@ -239,8 +239,11 @@ Test scripts for running other example simulations are provided:
 ## How to run your own simulations
 To run the simmulation, you need to make parameter setting **_params_RSF.py**.  
 For test example, it is located at Figures/reg_RSF_AG/test/.  
+This file is read by **Main_test.py**, and the simulaiton si executed.
 
-If you want to run your own simulation, you need to 
+Thus, you need to change the _params_RSF.py and Main_test.py.
+For example, you can make directory Figures/RSF_AG/Project_xxx/case_1/, and locate the _params_RSF.py there.
+The variable **fname** in Main_test.py and _params_RSF.py should be matched to Figures/RSF_AG/Project_xxx/case_1/.
 
 
 ## References
