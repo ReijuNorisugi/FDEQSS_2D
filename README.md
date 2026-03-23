@@ -36,7 +36,7 @@ It supports rapid prototyping of new physical models and is suitable for large-s
 ## Currently available physics
 
 ### Medium
-- Linearly elastic body
+- Linearly elastic uniform body
 
 ### Boundary Conditions
 - Infinite space
@@ -70,9 +70,7 @@ https://www.docker.com/get-started
 ### 2. Pull Docker image
 
 The simulation environment is distributed as a pre-built Docker image.
-
 **Note**: The Docker image is approximately **20 GB** in size.
-
 Please ensure that you have sufficient disk space.
 
 #### For arm64 machines:
@@ -109,10 +107,30 @@ git checkout v0.2.0
 
 The correspondance between each tag and version is summarized in tag.txt.
 
-## Test run of examples
+## Test run with example scripts
 
-I provide 
+After installing the docker image and cloning this repository, you can run the example simulaiton.
+At first, let's try the SCEC community benchmark problem BP1-FD.
 
+#### For arm64 machines:
+```bash
+docker run --rm \
+  -v $(pwd):$(pwd) \
+  -w $(pwd) \
+  reiju123/sbiem:latest \
+  conda run -n sbiem python3 -u Main_test.py
+```
+
+#### For x86_64 machines:
+```bash
+docker run --rm \
+  -v $(pwd):$(pwd) \
+  -w $(pwd) \
+  reiju123/sbiem_x86_64:latest \
+  conda run -n sbiem python3 -u Main_test.py
+```
+
+The simulation is executed inside the pre-configured Conda environment included in the Docker image.
 
 ## References
 - [Lapusta, N., Rice, J. R., Ben‐Zion, Y., & Zheng, G. (2000). Elastodynamic analysis for slow tectonic loading with spontaneous rupture episodes on faults with rate‐and state‐dependent friction. Journal of Geophysical Research: Solid Earth, 105(B10), 23765-23789.](https://doi-org.kyoto-u.idm.oclc.org/10.1029/2000JB900250)
