@@ -158,7 +158,6 @@ After installing the docker image and cloning this repository, you can run the e
 At first, let's try [the SCEC community benchmark problem BP1-FD](https://strike.scec.org/cvws/seas/benchmark_descriptions.html).  
 This is mode III problem in a half infinite space. Constitutive law is regularized form of RSF and aging laws.  
 It will take a couple of minutes on a laptop.
-</details>
 
 #### For arm64 machines:
 ```bash
