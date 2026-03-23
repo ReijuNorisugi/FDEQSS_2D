@@ -4,7 +4,7 @@ PyTorch-based numerical simulation code for 2D Fully Dynamic Earthquake Sequence
 ![](sbiem_modules/zzz/top.png)
 
 <details>
-<summary><strong><h2>Overview</h2></strong></summary>
+<summary><h2>Overview</h2></summary>
 This repository provides a numerical simulation framework for **fully dynamic earthquake sequence simulations** by coupling:
 
 - Elastodynamics
