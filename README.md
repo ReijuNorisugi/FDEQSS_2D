@@ -230,20 +230,43 @@ docker run --rm \
 ```
 
 You can obtain the slip evolution, trajectories, fault snapshots, source parameters, etc.  
-Figures are saved in PNG at Figures/reg_RSF_AG/test/.
+Figures are saved in PNG at:
+```bash
+Figures/reg_RSF_AG/test/.
+```
 
 ## Other examples
 Test scripts for running other example simulations are provided:  
-- RSF and aging laws of the standard form at /igures/RSF_AG/test/
+- RSF and aging laws of the standard form at:
+```bash
+/igures/RSF_AG/test/
+```
 
 ## How to run your own simulations
-To run the simmulation, you need to make parameter setting **_params_RSF.py**.  
-For test example, it is located at Figures/reg_RSF_AG/test/.  
-This file is read by **Main_test.py**, and the simulaiton si executed.
+To run custom simulation, you need to configure the parameter file '**_params_RSF.py**'.  
 
-Thus, you need to change the _params_RSF.py and Main_test.py.  
-For example, you can make directory Figures/RSF_AG/Project_xxx/case_1/, and locate the _params_RSF.py there.  
-The variable **fname** in Main_test.py and _params_RSF.py should be matched to Figures/RSF_AG/Project_xxx/case_1/.
+For test example, the file is located at:
+```bash
+Figures/reg_RSF_AG/test/.  
+```
+
+This file is read by **Main_test.py**, which controrls the escecution of simulations.
+
+To create your own simulation setup, you can modify '**_params_RSF.py**' and '**Main_test.py**'.  
+
+For example, you may create a new directory such as:
+```bash
+Figures/RSF_AG/Project_xxx/case_1/
+```
+and place a customized '**_params_RSF.py**' there.  
+
+The variable '**fname**' in both '**Main_test.py**' and '**_params_RSF.py**' must matche the directory name:
+```bash
+Figures/RSF_AG/Project_xxx/case_1/
+```
+
+Directories of the same name is automatically created under Output/ and Log/ and used to store outputs and logs of simulations.  
+After modifying the parameter files, run the simulation using the same Docker command as shown in the test run section.  
 
 ## References
 - [Lapusta, N., Rice, J. R., Ben‐Zion, Y., & Zheng, G. (2000). Elastodynamic analysis for slow tectonic loading with spontaneous rupture episodes on faults with rate‐and state‐dependent friction. Journal of Geophysical Research: Solid Earth, 105(B10), 23765-23789.](https://doi-org.kyoto-u.idm.oclc.org/10.1029/2000JB900250)
