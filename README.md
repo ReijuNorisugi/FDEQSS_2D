@@ -65,8 +65,8 @@ First, install Docker on your system:
 https://www.docker.com/get-started
 
 ### 2. Pull Docker image
-The simulation environment is distributed as a pre-built Docker image.
-**Note**: The Docker image is approximately **20 GB** in size.
+The simulation environment is distributed as a pre-built Docker image.  
+**Note**: The Docker image is approximately **20 GB** in size.  
 Please ensure that you have sufficient disk space.
 
 #### For arm64 machines:
@@ -100,8 +100,9 @@ git checkout v0.2.0
 The correspondance between each tag and version is summarized in Tags at the top.
 
 ## Test run with example scripts
-After installing the docker image and cloning this repository, you can run the example simulaiton.
-At first, let's try [the SCEC community benchmark problem BP1-FD](https://strike.scec.org/cvws/seas/benchmark_descriptions.html).
+After installing the docker image and cloning this repository, you can run the example simulaiton.  
+At first, let's try [the SCEC community benchmark problem BP1-FD](https://strike.scec.org/cvws/seas/benchmark_descriptions.html).  
+This is mode III problem in a half infinite space. Constitutive law is regularized form of RSF and aging laws.
 It will take a couple of minutes on a laptop.
 
 #### For arm64 machines:
@@ -135,7 +136,70 @@ docker run --rm \
 The simulation is executed inside the pre-configured Conda environment included in the Docker image.
 
 
-## Checking outputs
+## Check outputs
+When example scripts are properly executed, you can check the log file log_yyyymmdd_hh.log:
+```bash
+cd /Log/reg_RSF_AG/test
+```
+
+You will see the following log including simulation condition and time stamp of dynamic events:
+```text
+********************************
+/reg_RSF_AG/test/
+
+ * Computational conditions *
+
+ *  Fully dynamic
+ *  Mirror
+ *  Constitutive law = reg_RSF_AG
+ *  Rupture mode = III
+ *  Stepper = LR
+ 
+ * Coordinate setting *
+
+ *  Domain size = 80.0 km
+ *  Fault size = 40.0 km
+ *  Replication = 2
+ *  Tw = 23.094688221709006 sec
+ *  dtmin = 11.27670323325635 msec
+
+ * Output conditions * 
+
+ * Sparse Bulk output is available
+ * Dense station output is available
+ * EQ snapshot is available
+
+ *  h*RR / h = 10.3
+ *  h*RA / h = 25.1
+ *  At least > 20 will be fine, > 40 will be nicely resolved
+
+ *  Lambda0 / h = 3.9
+ *   At least > 3 is required.
+ *  hcell = 78.125
+
+*************************************************
+
+EQ = 1 ..... t = 6202937409.699303 sec ..... prog = 0.131
+EQ = 2 ..... t = 9643446226.017618 sec ..... prog = 0.204
+EQ = 3 ..... t = 13371953925.885927 sec ..... prog = 0.283
+EQ = 4 ..... t = 16940256599.468243 sec ..... prog = 0.358
+EQ = 5 ..... t = 20578534310.861343 sec ..... prog = 0.435
+EQ = 6 ..... t = 24201135013.98633 sec ..... prog = 0.512
+EQ = 7 ..... t = 27745446191.138847 sec ..... prog = 0.587
+EQ = 8 ..... t = 31392970161.29394 sec ..... prog = 0.664
+EQ = 9 ..... t = 35012935927.11742 sec ..... prog = 0.740
+EQ = 10 ..... t = 38560859187.144684 sec ..... prog = 0.815
+EQ = 11 ..... t = 42218375798.39385 sec ..... prog = 0.892
+EQ = 12 ..... t = 45832227928.83376 sec ..... prog = 0.969
+
+*************************************************
+
+Consuming time 103.62035083770752 sec
+63216 time steps
+12 quakes
+
+Restart files are saved.
+```
 
 
 
