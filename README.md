@@ -102,7 +102,7 @@ The correspondance between each tag and version is summarized in Tags at the top
 ## Test run with an example script
 After installing the docker image and cloning this repository, you can run the example simulaiton.  
 At first, let's try [the SCEC community benchmark problem BP1-FD](https://strike.scec.org/cvws/seas/benchmark_descriptions.html).  
-This is mode III problem in a half infinite space. Constitutive law is regularized form of RSF and aging laws.
+This is mode III problem in a half infinite space. Constitutive law is regularized form of RSF and aging laws.  
 It will take a couple of minutes on a laptop.
 
 #### For arm64 machines:
@@ -209,7 +209,7 @@ cd Output/reg_RSF_AG/test
 
 ## Visualizing the test example
 Python script for quick visualization of simulation results Analyze_RSF.py is provided at Figures/reg_RSF_AG/test/.  
-This script reads the output from /Output/reg_RSF_AG/test/, so make sure that the test run has been completed.
+This script reads the output from Output/reg_RSF_AG/test/, so make sure that the test run has been completed.
 
 #### For arm64 machines:
 ```bash
@@ -231,6 +231,17 @@ docker run --rm \
 
 You can obtain the slip evolution, trajectories, fault snapshots, source parameters, etc.  
 Figures are saved in PNG at Figures/reg_RSF_AG/test/.
+
+## Other examples
+Test scripts for running other example simulations are provided:  
+- RSF and aging laws of the standard form at /igures/RSF_AG/test/
+
+## How to run your own simulations
+To run the simmulation, you need to make parameter setting **_params_RSF.py**.  
+For test example, it is located at Figures/reg_RSF_AG/test/.  
+
+If you want to run your own simulation, you need to 
+
 
 ## References
 - [Lapusta, N., Rice, J. R., Ben‐Zion, Y., & Zheng, G. (2000). Elastodynamic analysis for slow tectonic loading with spontaneous rupture episodes on faults with rate‐and state‐dependent friction. Journal of Geophysical Research: Solid Earth, 105(B10), 23765-23789.](https://doi-org.kyoto-u.idm.oclc.org/10.1029/2000JB900250)
