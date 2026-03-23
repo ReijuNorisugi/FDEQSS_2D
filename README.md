@@ -31,7 +31,6 @@ This code is designed for **research use**, with a focus on:
 It supports rapid prototyping of new physical models and is suitable for large-scale simulations on modern hardware.
 
 
-
 ## Currently available physics
 
 ### Medium
@@ -251,6 +250,11 @@ cd ../../..
 cd Output/reg_RSF_AG/test
 ```
 
+By default, files for restarting the simulation are saved in the following directory:
+```bash
+cd Restart/reg_RSF_AG/test
+```
+
 ## Visualizing the test example
 Python script for quick visualization of simulation results Analyze_RSF.py is provided at Figures/reg_RSF_AG/test/.  
 This script reads the output from Output/reg_RSF_AG/test/, so make sure that the test run has been completed.
@@ -304,7 +308,7 @@ Figures/RSF_AG/Project_xxx/case_1/
 ```
 and place a customized '**_params_RSF.py**' there.  
 
-The variable '**fname**' in both '**Main_test.py**' and '**_params_RSF.py**' must matche the directory name:
+The variable '**fname**' in both '**Main_test.py**' and '**_params_RSF.py**' must match the directory name:
 ```bash
 Figures/RSF_AG/Project_xxx/case_1/
 ```
