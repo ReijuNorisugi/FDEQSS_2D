@@ -8,7 +8,7 @@ PyTorch-based numerical simulation code for 2D Fully Dynamic Earthquake Sequence
 This repository provides a numerical simulation framework for **fully dynamic earthquake sequence simulations** by coupling:
 
 - Elastodynamics
-- Rate-and-state friction laws
+- Rate-and-state friction (RSF) laws
 
 The code enables long-term simulations of earthquake cycles within a unified physical framework, including:
 
@@ -31,23 +31,29 @@ This code is designed for **research use**, with a focus on:
 
 It supports rapid prototyping of new physical models and is suitable for large-scale simulations on modern hardware.
 
-Currently available physical assumptions are below:
-### Medium
-・Linearly elastic body.
 
-### Boundary condition
-・Infinite space.
-・Half infinite space.
+
+## Currently available physics
+
+### Medium
+- Linearly elastic body
+
+### Boundary Conditions
+- Infinite space
+- Half-infinite space
 
 ### Geometry
-・Flat fault.
+- Flat fault
 
-### Rupture mode
-・Mode I, II, III, and IV (crustal plane model).
+### Rupture Modes
+- Mode I
+- Mode II
+- Mode III
+- Mode IV (crustal plane model)
 
-### On-fault constitutive law
-・Rate- and state-dependent friction (RSF) law, regularized form, aging law.
-・RSF law, standard form, aging law.
+### On-fault Constitutive Laws
+- RSF law, **regularized form** with aging law
+- RSF law, **standard form** with aging law
 
 
 ## Installation
