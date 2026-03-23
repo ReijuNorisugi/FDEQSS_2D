@@ -4,7 +4,6 @@ PyTorch-based numerical simulation code for 2D Fully Dynamic Earthquake Sequence
 ![](sbiem_modules/zzz/top.png)
 
 ## Overview
-
 This repository provides a numerical simulation framework for **fully dynamic earthquake sequence simulations** by coupling:
 
 - Elastodynamics
@@ -57,18 +56,15 @@ It supports rapid prototyping of new physical models and is suitable for large-s
 
 
 ## Installation
-
 This project uses Docker to provide a fully reproducible runtime environment.  
 You do not need to manually install Python or any dependencies, and your local environment is not contaminated.
 
 ### 1. Install Docker
-
 First, install Docker on your system:
 
 https://www.docker.com/get-started
 
 ### 2. Pull Docker image
-
 The simulation environment is distributed as a pre-built Docker image.
 **Note**: The Docker image is approximately **20 GB** in size.
 Please ensure that you have sufficient disk space.
@@ -84,15 +80,12 @@ docker pull reiju123/sbiem_x86_64:latest
 ```
 
 You can verify the installation:
-
 ```bash
 docker images
 ```
 
 ### 3. Clone this repository
-
 Clone the source code from GitHub:
-
 ```bash
 git clone https://github.com/ReijuNorisugi/FDEQSS_2D.git
 cd FDEQSS_2D
@@ -100,7 +93,6 @@ cd FDEQSS_2D
 
 If you want to reproduce results from specific publications or stable versions,
 please checkout a tagged release:
-
 ```bash
 git checkout v0.2.0
 ```
@@ -108,9 +100,9 @@ git checkout v0.2.0
 The correspondance between each tag and version is summarized in tag.txt.
 
 ## Test run with example scripts
-
 After installing the docker image and cloning this repository, you can run the example simulaiton.
 At first, let's try the SCEC community benchmark problem BP1-FD.
+It will take a couple of minutes on a laptop.
 
 #### For arm64 machines:
 ```bash
@@ -130,7 +122,22 @@ docker run --rm \
   conda run -n sbiem python3 -u Main_test.py
 ```
 
+#### For GPU computation:
+```bash
+docker run --rm \
+  --gpus all \
+  -v $(pwd):$(pwd) \
+  -w $(pwd) \
+  reiju123/sbiem:latest \
+  conda run -n sbiem python3 -u Main_test.py
+```
+
 The simulation is executed inside the pre-configured Conda environment included in the Docker image.
+
+
+## Checking outputs
+
+
 
 ## References
 - [Lapusta, N., Rice, J. R., Ben‐Zion, Y., & Zheng, G. (2000). Elastodynamic analysis for slow tectonic loading with spontaneous rupture episodes on faults with rate‐and state‐dependent friction. Journal of Geophysical Research: Solid Earth, 105(B10), 23765-23789.](https://doi-org.kyoto-u.idm.oclc.org/10.1029/2000JB900250)

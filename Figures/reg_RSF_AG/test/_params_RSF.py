@@ -134,7 +134,7 @@ if not mirror:        # Without mirror.
         ratio = 1.0  # Choose longer value as possible as you can.
 else:                 # With mirror.
     lam = 80000.    # Size of computational regime. Mirror part is excluded.
-    Nele = 2048      # Total cell numer for computation.
+    Nele = 1024      # Total cell numer for computation.
     nperi = 2  # At least larger than 2.
 
     if rmPB:
