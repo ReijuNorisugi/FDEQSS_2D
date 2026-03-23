@@ -241,10 +241,9 @@ To run the simmulation, you need to make parameter setting **_params_RSF.py**.
 For test example, it is located at Figures/reg_RSF_AG/test/.  
 This file is read by **Main_test.py**, and the simulaiton si executed.
 
-Thus, you need to change the _params_RSF.py and Main_test.py.
-For example, you can make directory Figures/RSF_AG/Project_xxx/case_1/, and locate the _params_RSF.py there.
+Thus, you need to change the _params_RSF.py and Main_test.py.  
+For example, you can make directory Figures/RSF_AG/Project_xxx/case_1/, and locate the _params_RSF.py there.  
 The variable **fname** in Main_test.py and _params_RSF.py should be matched to Figures/RSF_AG/Project_xxx/case_1/.
-
 
 ## References
 - [Lapusta, N., Rice, J. R., Ben‐Zion, Y., & Zheng, G. (2000). Elastodynamic analysis for slow tectonic loading with spontaneous rupture episodes on faults with rate‐and state‐dependent friction. Journal of Geophysical Research: Solid Earth, 105(B10), 23765-23789.](https://doi-org.kyoto-u.idm.oclc.org/10.1029/2000JB900250)
