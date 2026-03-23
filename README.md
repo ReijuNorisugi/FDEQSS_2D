@@ -348,6 +348,18 @@ After modifying the parameter files, run the simulation using the same Docker co
 
 
 <details>
+<summary><h2>Please cite this repository!</h2></summary>
+If you use this code to produce scientific results, please cite this repository as follows:
+
+```text
+The numerical simulations were performed using the open-source code
+FDEQSS_2D (Norisugi, 2026), available at
+xxxxx
+```
+
+</details>
+
+<details>
 <summary><h2>References</h2></summary>
 
 - [Lapusta, N., Rice, J. R., Ben‐Zion, Y., & Zheng, G. (2000). Elastodynamic analysis for slow tectonic loading with spontaneous rupture episodes on faults with rate‐and state‐dependent friction. Journal of Geophysical Research: Solid Earth, 105(B10), 23765-23789.](https://doi-org.kyoto-u.idm.oclc.org/10.1029/2000JB900250)
