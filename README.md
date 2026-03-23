@@ -207,8 +207,30 @@ cd ../../..
 cd Output/reg_RSF_AG/test
 ```
 
-## Analyze the test example
+## Visualizing the test example
+Python script for quick visualization of simulation results Analyze_RSF.py is provided at Figures/reg_RSF_AG/test/.  
+This script reads the output from /Output/reg_RSF_AG/test/, so make sure that the test run has been completed.
 
+#### For arm64 machines:
+```bash
+docker run --rm \
+  -v $(pwd):$(pwd) \
+  -w $(pwd) \
+  reiju123/sbiem:latest \
+  conda run -n sbiem python3 -u Figures/reg_RSF_AG/test/Analyze_RSF.py
+```
+
+#### For x86_64 machines:
+```bash
+docker run --rm \
+  -v $(pwd):$(pwd) \
+  -w $(pwd) \
+  reiju123/sbiem_x86_64:latest \
+  conda run -n sbiem python3 -u Figures/reg_RSF_AG/test/Analyze_RSF.py
+```
+
+You can obtain the slip evolution, trajectories, fault snapshots, source parameters, etc.  
+Figures are saved in PNG at Figures/reg_RSF_AG/test/.
 
 ## References
 - [Lapusta, N., Rice, J. R., Ben‐Zion, Y., & Zheng, G. (2000). Elastodynamic analysis for slow tectonic loading with spontaneous rupture episodes on faults with rate‐and state‐dependent friction. Journal of Geophysical Research: Solid Earth, 105(B10), 23765-23789.](https://doi-org.kyoto-u.idm.oclc.org/10.1029/2000JB900250)
