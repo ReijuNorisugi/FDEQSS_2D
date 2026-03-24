@@ -48,7 +48,7 @@ duration_ = 1  # year.
 duration_ = duration_ * yr2sec
 
 # How many events you want to show in a snapshot?
-plot_num = 7
+plot_num = 6
 reduce = 1  # You can reduce data points for contour if it is too heavy.
 
 ###########   Load parameters used in simulation.   ###########

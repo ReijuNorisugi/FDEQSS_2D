@@ -3,8 +3,7 @@ PyTorch-based numerical simulation code for 2D Fully Dynamic Earthquake Sequence
 
 ![](sbiem_modules/zzz/top.png)
 
-<details>
-<summary><h2>Overview</h2></summary>
+## Overview
 
 This repository provides a numerical simulation framework for **fully dynamic earthquake sequence simulations** by coupling:
 
@@ -31,10 +30,9 @@ This code is designed for **research use**, with a focus on:
 - Computational efficiency
 
 It supports rapid prototyping of new physical models and is suitable for large-scale simulations on modern hardware.
-</details>
 
-<details>
-<summary><h2>Currently available physics</h2></summary>
+
+## Currently available physics
 
 ### Medium
 - Linearly elastic uniform body
@@ -55,7 +53,6 @@ It supports rapid prototyping of new physical models and is suitable for large-s
 ### On-fault Constitutive Laws
 - RSF law, **regularized form** with aging law
 - RSF law, **standard form** with aging law
-</details>
 
 
 <details>
@@ -117,7 +114,6 @@ FDEQSS_2D/                     # Home directory for simulation.
 ├── sbiem_modules/             # Core numerical solvers and physics modules.
 │   ├── constitutive_law/      # Solvers for each constitutive law.
 │   ├── convolution/           # Green's function convolution and history update.
-│   └── integrator/            # Organizer of predictory correcter integration.
 │   └── integrator/            # Organizer of predictory correcter integration.
 │   └── kernel/                # Prepare the table of Green's function.
 │   └── manager/               # Manager of output and time stepping.
@@ -348,13 +344,13 @@ After modifying the parameter files, run the simulation using the same Docker co
 
 
 <details>
-<summary><h2>Please cite this repository!</h2></summary>
+<summary><h2>Please cite this repository !</h2></summary>
+
 If you use this code to produce scientific results, please cite this repository as follows:
 
 ```text
 The numerical simulations were performed using the open-source code
-FDEQSS_2D (Norisugi, 2026), available at
-xxxxx
+FDEQSS_2D (Norisugi, 2026), available at xxxxx
 ```
 
 </details>

@@ -2,7 +2,7 @@
 """
 Code for 2D dynamic earthquake sequence simulation.
 Written by Reiju Norisugi, Graduate School of Scienece, Kyoto Univeristy.
-Last updated: 20260309.
+Last updated: 20260323.
 """
 
 # This is the module which summarizes the output functions.

@@ -111,6 +111,7 @@ class Management():
         self.reshape   = np.reshape
         self.hstack    = np.hstack
         self.concatenate = np.concatenate
+        self.log = logging.info
         
         self.cuda_stream = tr.cuda.stream
         self.synchronize = tr.cuda.synchronize
@@ -161,9 +162,9 @@ class Management():
         wr.write_t_dense(self.reshape(self.store_t_dense, (-1, 1)))
         
         self.t_EQ = self.reshape(self.t_EQ, (-1, 2))
-        self.EQcatalog = self.reshape(self.to_numpy(self.EQcatalog), (-1, 8))
+        self.EQcatalog = self.reshape(self.to_numpy(self.EQcatalog), (-1, 9))
         wr.write_catalog(self.hstack([self.t_EQ, self.EQcatalog]))
-        self.err_source = self.reshape(self.to_numpy(self.err_source), (-1, 8))
+        self.err_source = self.reshape(self.to_numpy(self.err_source), (-1, 10))
         wr.write_err_source(self.err_source)
         
         wr.write_Pr(self.reshape(self.to_numpy(self.store_Pr*self.hcell), (-1, 1)))
@@ -435,13 +436,13 @@ class Management():
                 pass
             if self.tr_all(result.V < self.v_ecos):
                 self.moratorium_time += self.dt0
-                
+
                 if self.stock_source:
                     pass
                 else:
                     # Snap EQ start and end times.
                     self.tmp = self.np_array([self.init_EQ, self.t])
-                    self.tmp_ = self.np_array([self.init_id_sparse, self.id_count, 
+                    self.tmp_ = self.np_array([self.init_id_sparse, self.id_count,
                                                 self.init_id_dense, self.id_count_st])
                     # Snap total coseismic slip, potency, Gc distribution, and shear stress change.
                     self.EQ_slip = result.delta - self.ini_delta
@@ -454,14 +455,14 @@ class Management():
                     else:
                         self.def_del = self.tr_dct(self.tr_cat((-self.EQ_slip, self.pad), dim=0))
                         self.stress_drop = self.tr_idct(ker.kernel_st * self.def_del)[:self.ncell]
-                    
+
                     # Energy dissipation.
                     self.EG = self.tr_sum(self.Gcd) * self.hcell
                     # Available energy.
                     self.Ea = self.tr_sum(- self.tau_change * self.EQ_slip) * self.hcell * 0.5
                     # Radiation energy.
                     self.ER = self.Ea - self.EG
-                    
+
                     # Capture ruptured area, > self.slip_thres % of maximum total slip.
                     self.ruptured = self.tr_where(self.EQ_slip >= self.slip_thres * self.tr_max(self.EQ_slip))
                     # Elliptical weight function for computing stress drop.
@@ -470,16 +471,20 @@ class Management():
                     self.coord = self.xp[self.ruptured] - self.center
                     self.ellip = 2. * self.R * self.tr_sqrt(1. - (self.coord/self.R)**2.)
                     # Static stress drop.
-                    self.sd = ( self.tr_sum( self.stress_drop[self.ruptured] * self.ellip ) 
+                    self.sd_M = ( self.tr_sum( self.stress_drop[self.ruptured] * self.ellip )
                                         / self.tr_sum( self.ellip )
                     )
+                    self.sd_E = ( self.tr_sum( self.stress_drop[self.ruptured] * self.EQ_slip[self.ruptured] )
+                                        / self.tr_sum( self.EQ_slip[self.ruptured] )
+                    )
+
                     # Seismic potency.
                     self.potency = self.tr_sum(self.EQ_slip[self.ruptured]) * self.hcell
                     # Average fracture energy.
                     self.Gc_ave = self.tr_mean(self.Gcd[self.ruptured])
                     # Average coseismic slip.
                     self.slip_ave = self.tr_mean(self.EQ_slip[self.ruptured])
-                    
+
                     # Error of source parameters due to the slip threshold to determine ruptured area.
                     # 8 components. Lower and upper bounds of stress drop, seismic potency, fracture energy, and average slip.
                     self.err = self.tr_zeros(0, dtype=self.dtype, device=self.device)
@@ -489,25 +494,29 @@ class Management():
                         self.center = (self.tr_max(self.xp[self.ruptured]) + self.tr_min(self.xp[self.ruptured])) * 0.5
                         self.coord = self.xp[self.ruptured] - self.center
                         self.ellip = 2. * self.R * self.tr_sqrt(1. - (self.coord/self.R)**2.)
-                        
-                        self.sd_ = ( self.tr_sum( self.stress_drop[self.ruptured] * self.ellip ) 
+
+                        self.sd_M_ = ( self.tr_sum( self.stress_drop[self.ruptured] * self.ellip )
                                             / self.tr_sum( self.ellip )
+                        )
+                        self.sd_E_ = ( self.tr_sum( self.stress_drop[self.ruptured] * self.EQ_slip[self.ruptured] )
+                                            / self.tr_sum( self.EQ_slip[self.ruptured] )
                         )
                         self.pot_ = self.tr_sum(self.EQ_slip[self.ruptured]) * self.hcell
                         self.Gc_ = self.tr_mean(self.Gcd[self.ruptured])
                         self.slip_ = self.tr_mean(self.EQ_slip[self.ruptured])
-                        
+
                         self.err = self.tr_cat((self.err,
-                                                self.sd_.reshape(1), self.pot_.reshape(1),
-                                                self.Gc_.reshape(1), self.slip_.reshape(1)), dim=0)
-                    
+                                                self.sd_M_.reshape(1), self.pot_.reshape(1),
+                                                self.Gc_.reshape(1), self.slip_.reshape(1),
+                                                self.sd_E_.reshape(1)), dim=0)
+
                     if self.snap_EQ: # For saveing snapshot at the end time.
                         self.ndt = self.out_ndt - 1
                     else:
                         self.ndt = 0
-                    
+
                     self.stock_source = True
-                
+
                 if self.moratorium_time < self.moratorium:
                     return
                 else:
@@ -518,17 +527,18 @@ class Management():
                 self.id_EQ = 0
                 self.EQ_num += 1
                 self.out_ndt = 100
-                
+
                 # Store EQcatalog, event ID, and source parameters from diffenrent slip threshold.
                 self.t_EQ = self.concatenate([self.t_EQ, self.tmp])
                 self.EQcatalog = self.tr_cat((self.EQcatalog,
                                             self.hypo, self.potency.reshape(1),
-                                            self.sd.reshape(1), self.Gc_ave.reshape(1),
+                                            self.sd_M.reshape(1), self.Gc_ave.reshape(1),
                                             self.slip_ave.reshape(1), self.EG.reshape(1),
-                                            self.Ea.reshape(1), self.ER.reshape(1)), dim=0)
+                                            self.Ea.reshape(1), self.ER.reshape(1),
+                                            self.sd_E.reshape(1)), dim=0)
                 self.idmain = self.concatenate([self.idmain, self.tmp_])
                 self.err_source = self.tr_cat((self.err_source, self.err), dim=0)
-                
+
                 if self.snap_EQ:
                     self.store_Gcd = self.tr_cat((self.store_Gcd, self.Gcd[::self.downsample]), dim=0)
                 else:
@@ -537,6 +547,7 @@ class Management():
                 self.Gc = self.Gc.zero_()
                 self.delta_Gc = self.delta_Gc.zero_()
                 self.delta_inst = self.delta_inst.zero_()
+                # Output log when EQ occurs.
                 self.log(f'EQ = {self.EQ_num} ..... t = {self.t} sec ..... prog = {self.t/self.tmax:.3f}')
             else:
                 self.moratorium_time = 0.

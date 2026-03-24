@@ -132,6 +132,7 @@ if not mirror:        # Without mirror.
         ratio = 2.0  # You can take longer truncation window without increasing system size.
     else:    # With periodic boundaries.
         ratio = 1.0  # Choose longer value as possible as you can.
+    # * * * * * * * * * * * * * * * * * #
 else:                 # With mirror.
     lam = 80000.    # Size of computational regime. Mirror part is excluded.
     Nele = 1024      # Total cell numer for computation.
@@ -212,7 +213,7 @@ utils.show(fname, qd, mirror, Frict, mode, Stepper, lam, nperi,
 ##########################   Set fault constitutive law's parameters here   ########################
 # Useful function. Allow smooth parameter transition.
 def smoothed_boxcar(w1, w2, x, param_in, param_out):
-    return param_in + (param_out - param_in) * 0.5 * (1 - tr.tanh((w2/(tr.abs(x)-w1-w2))+(w2/(tr.abs(x)-w1))))
+    return param_in + (param_out - param_in) * 0.5 * (1. - tr.tanh((w2/(tr.abs(x)-w1-w2))+(w2/(tr.abs(x)-w1))))
 
 # Frictional parameters.
 sigma = tr.zeros_like(xp, dtype=dtype, device=device_1)

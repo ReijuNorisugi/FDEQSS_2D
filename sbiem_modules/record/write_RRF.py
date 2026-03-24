@@ -2,7 +2,7 @@
 """
 Code for 2D dynamic earthquake sequence simulation.
 Written by Reiju Norisugi, Graduate School of Scienece, Kyoto Univeristy.
-Last updated: 20260309.
+Last updated: 20260323.
 """
 
 # This is the module which summarizes the output functions.
@@ -17,7 +17,6 @@ class Write():
 
     # Open files before simulation.
     def open_files(self):
-        #Output files.
         self.out_catalog = open('Output{}out_catalog.bin'.format(self.fname), mode=self.mode)
         self.out_err_source = open('Output{}out_err_source.bin'.format(self.fname), mode=self.mode)
         self.out_idmain = open('Output{}out_idmain.bin'.format(self.fname), mode=self.mode)

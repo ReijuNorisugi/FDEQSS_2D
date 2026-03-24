@@ -2,12 +2,11 @@
 """
 Code for 2D dynamic earthquake sequence simulation.
 Written by Reiju Norisugi, Graduate School of Scienece, Kyoto Univeristy.
-Last updated: 20251009.
+Last updated: 20260323.
 """
 
 # This is the module for V prediction and variable update with RRF law.
 
-import sbiem_modules.utils.Load_pickle as load
 import torch as tr
 
 # Class for Nweton-Raphson method.
@@ -17,8 +16,8 @@ class Solver():
         self.device = Devices['device_1']
         
         # Conditions for iteration.
-        self.max_rep = 10**4     # Max iteration for Newton-Raphson.
-        self.epsilon = 10**(-14) # Convergence criteria.
+        self.max_rep = int(1.e4)     # Max iteration for Newton-Raphson.
+        self.epsilon = 1.e-14 # Convergence criteria.
         self.epsilon = tr.tensor(self.epsilon, dtype=tr.float64, device=self.device)
 
         # Constants.
@@ -40,10 +39,7 @@ class Solver():
         self.tr_any = tr.any
         self.tr_clamp = tr.clamp
         self.tr_cat = tr.cat
-        self.tr_stack = tr.stack
-
-    def absmax(self, tensor):
-        return self.tr_max(self.tr_abs(tensor), dim=0).values
+        self.tr_max = tr.maximum
 
     # Halley's method.
     def Halley(self, ini):
@@ -59,8 +55,7 @@ class Solver():
             p = self.tr_clamp(p, max=7.)
             ep = self.etaA * self.tr_exp(p)
             T = calc + p + ep
-            
-            tol = self.epsilon * (self.absmax(self.tr_stack([calc, p, ep], dim=0)))
+            tol = self.epsilon * self.tr_max(self.tr_max(calc.abs().max(), p.abs().max()), ep.abs().max())
             if self.tr_any(self.tr_abs(T) >= tol):
                 dT1 = 1. + ep
                 dT2 = ep

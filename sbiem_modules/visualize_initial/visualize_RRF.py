@@ -2,7 +2,7 @@
 """
 Code for 2D dynamic earthquake sequence simulation.
 Written by Reiju Norisugi, Graduate School of Scienece, Kyoto Univeristy.
-Last updated: 20250928.
+Last updated: 20260323.
 """
 
 # This is the module which plots the initial conditions.
@@ -107,7 +107,7 @@ class Vis():
         ax2.plot(self.xp, self.state[:, int(self.k_size/2)], color='blue', lw=1.5)
         ax2.plot(self.xp, self.state[:, int(3*self.k_size/4)], color='blue', lw=1.5)
         ax2.plot(self.xp, self.state[:, -1], color='blue', lw=1.5)
-        #ax2.plot(self.xp, self.state[:, 1499], color='blue', lw=1.5)
+        ax2.set_yscale('log')
         ax2.set_xlabel('Distance along fault (m)', fontsize=10)
         ax2.set_ylabel('State variable', fontsize=10)
         plt.grid()
@@ -168,20 +168,10 @@ class Vis():
         plt.yticks([-14, -10, -6, -2], fontsize=13)
         ax.tick_params(axis='z', labelsize=13)
         ax.view_init(azim=-30, elev=30)
-        # Plot projections of the contours for each dimension.  By choosing offsets
-        # that match the appropriate axes limits, the projected contours will sit on
-        # the 'walls' of the graph.
-        #ax.contour(X, Y, Z, zdir='z', offset=-100, cmap='coolwarm')
-        #ax.contour(X, Y, Z, zdir='x', offset=-40, cmap='coolwarm')
-        #ax.contour(X, Y, Z, zdir='y', offset=40, cmap='coolwarm')
-
-        #ax.set(xlim=(-40, 40), ylim=(-40, 40), zlim=(-100, 100),
-        #       xlabel='X', ylabel='Y', zlabel='Z')
         plt.savefig('Figures{}Initial/Tau_ss.png'.format(self.fname), dpi=600)
         
         
         fig, ax = plt.subplots(figsize=(5, 2))
-        #ax.axhline(0, color='dimgray', linestyle='dashed', lw=2.)
         ax.plot(self.xp, self.sigma*(10**(-6)), color='black', lw=3, label='Normal stress')
         ax.plot(self.xp, self.tau*(10**(-6)), color='black', lw=3, linestyle='dashed', label='Initial shear stress')
         ax.set_xlabel('Dstance along fault (m)', fontsize=10)
