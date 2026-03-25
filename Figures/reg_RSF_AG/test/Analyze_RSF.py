@@ -21,21 +21,17 @@ from sbiem_modules.utils import  utils
 
 fname = '/reg_RSF_AG/test/'   # Please type directory name.
 
-current = os.getcwd()
 # Set the path to the host directory.
-target = "/Users/rn/Documents/FDEQSS_2D"
+current = os.getcwd()
 rel = ""
-while current != target and current != os.path.dirname(current):
-    current = os.path.dirname(current)
-    rel = "../" + rel
 
 # Choose which to plot. When EQ_num is large, Dyn_snap is time-consuming.
 Slip_V_cmap     = True
-Check           = False
-Trajectory      = False
-Dyn_snap        = False
-EQ_before_after = False
-Summary         = False
+Check           = True
+Trajectory      = True
+Dyn_snap        = True
+EQ_before_after = True
+Summary         = True
 
 yr2sec = 365.*24.*60.*60.
 day2sec = 24.*60.*60.
