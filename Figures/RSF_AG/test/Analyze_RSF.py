@@ -3,7 +3,7 @@
 Code for analysing dynamic earthquake sequence simulation.
 This is valid for simulation with standard RSF law.
 Written by Reiju Norisugi, Graduate School of Scienece, Kyoto Univeristy.
-Last updated: 20260320.
+Last updated: 20260325.
 """
 
 import numpy as np
@@ -21,13 +21,9 @@ from sbiem_modules.utils import  utils
 
 fname = '/RSF_AG/test/'   # Please type directory name.
 
-current = os.getcwd()
 # Set the path to the host directory.
-target = "/Users/rn/Documents/FDEQSS_2D"
+current = os.getcwd()
 rel = ""
-while current != target and current != os.path.dirname(current):
-    current = os.path.dirname(current)
-    rel = "../" + rel
 
 # Choose which to plot. When EQ_num is large, Dyn_snap is time-consuming.
 Slip_V_cmap     = True
