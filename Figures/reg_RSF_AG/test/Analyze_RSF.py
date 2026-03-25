@@ -346,51 +346,6 @@ if Slip_V_cmap:
                 pad_inches=0,
             )
             plt.close()
-
-
-
-
-            #############################################
-        
-            fig, ax = plt.subplots(figsize=figsize)
-            if mirror:
-                if EQ_num != 0:
-                    ax.plot(out_delta[id_cos].T, xp, color='tomato', linestyle='solid', lw=4, label='Every {}s'.format(duration))
-                    ax.plot(out_delta[id_end].T, xp, color='black', linestyle='solid', lw=6, label='Total slip')
-                    ax.plot(out_delta[id_ass].T, xp, color='royalblue', linestyle='solid', lw=4, label='Every {}yr'.format(int(duration_/yr2sec)))
-                else:
-                    ax.plot(out_delta[id_ass].T, xp, color='blue', linestyle='solid', lw=4, label='Every {}yr'.format(int(duration_/yr2sec)))
-                ax.set_xlim(np.min(out_delta[begin:end]), np.max(out_delta[begin:end]))
-                ax.set_ylim(np.min(xp), np.max(xp))
-                ax.set_xlabel('Cumulative slip (m)', fontsize=25)
-                ax.set_ylabel('Distance along strike (km)', fontsize=25)
-                ax.invert_yaxis()
-                plt.xticks(fontsize=30)
-                plt.yticks([0, np.max(xp)/2+(hcell/4)*1.e-3, np.max(xp)+(hcell/2)*1.e-3], fontsize=30)
-            else:
-                if EQ_num != 0:
-                    ax.plot(xp, out_delta[id_cos].T, color='tomato', linestyle='solid', lw=4, label='Every {}s'.format(duration))
-                    ax.plot(xp, out_delta[id_end].T, color='black', linestyle='solid', lw=6, label='Total slip')
-                    ax.plot(xp, out_delta[id_ass].T, color='royalblue', linestyle='solid', lw=4, label='Every {}yr'.format(int(duration_/yr2sec)))
-                else:
-                    ax.plot(xp, out_delta[id_ass].T, color='blue', linestyle='solid', lw=4, label='Every {}yr'.format(int(duration_/yr2sec)))
-                ax.set_xlim(np.min(xp), np.max(xp))
-                ax.set_ylim(np.min(out_delta[begin:end]), np.max(out_delta[begin:end]))
-                ax.set_xlabel('Distance along strike (km)', fontsize=25)
-                ax.set_ylabel('Cumulative slip (m)', fontsize=25)
-                plt.xticks([np.min(xp)-(hcell/2)*1.e-3, np.min(xp)/2-(hcell/4)*1.e-3, 0,
-                            np.max(xp)/2+(hcell/4)*1.e-3, np.max(xp)+(hcell/2)*1.e-3], fontsize=30)
-                plt.yticks(fontsize=30)
-            handles, labels = plt.gca().get_legend_handles_labels()
-            if EQ_num == 0:
-                plt.legend([handles[0]], [labels[0]],
-                            loc='lower right', fontsize=30, framealpha=1)
-            else:
-                plt.legend([handles[0], handles[-1]], [labels[0], labels[-1]],
-                            loc='lower right', fontsize=30, framealpha=1)
-            plt.tight_layout()
-            plt.savefig('{}Figures{}Slip_V_contour/Slip_{}.png'.format(rel, fname, j), dpi=600)
-            plt.close()
         
 
 if Check:
