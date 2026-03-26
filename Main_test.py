@@ -20,7 +20,7 @@ Last updated: 20260320.
 # 'RRF': Rate- and roughness-dependent fault constitutive law (Norisugi & Noda, 2026).
 # 'mRRF': Modified version of rate- and roughness-dependent law (Norisugi & Noda, 2026).
 CL = 'RSF'
-#CL = 'RRF'  # Not yet.
+CL = 'RRF'  # Not yet.
 #CL = 'mRRF' # Not yet.
 
 # Set filename where _params_{CL}.py locates.
@@ -28,7 +28,7 @@ CL = 'RSF'
 # https://strike.scec.org/cvws/seas/benchmark_descriptions.html
 fname = '/reg_RSF_AG/test/'
 #fname = '/RSF_AG/test/' # Example of standard RSF-AG form in an infinit space.
-#fname = '/RRF/test/'  # Not yet.
+fname = '/RRF/test/'  # Not yet.
 #fname = '/mRRF/test/' # Not yet.
 
 # If you want to restart the simulation,

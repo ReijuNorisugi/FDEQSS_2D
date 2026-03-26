@@ -427,6 +427,8 @@ class Management():
             self.store_state_8  = self.tr_cat((self.store_state_8, result.state[::self.downsample, int(2**8-1)]), dim=0)
             self.store_state_11 = self.tr_cat((self.store_state_11, result.state[::self.downsample, -1]), dim=0)
             self.store_tau = self.tr_cat((self.store_tau, result.tau[::self.downsample]), dim=0)
+
+            print(self.t, '.......', self.tr_max(result.V).item())
     
     
     # Store dense output at stations.

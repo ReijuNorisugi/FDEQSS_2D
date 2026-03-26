@@ -96,9 +96,10 @@ cd FDEQSS_2D
 If you want to reproduce results from specific publications or stable versions,
 please checkout a tagged release:
 ```bash
-git checkout v0.2.0
+git checkout v0.3.0
 ```
 
+Tag v0.3.0 is the latest stable version.
 The correspondance between each tag and version is summarized in Tags at the top.
 </details>
 
