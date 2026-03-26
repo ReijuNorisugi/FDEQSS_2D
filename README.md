@@ -99,7 +99,7 @@ please checkout a tagged release:
 git checkout v0.3.0
 ```
 
-Tag v0.3.0 is the latest stable version.
+Tag v0.3.0 is the latest stable version.  
 The correspondance between each tag and version is summarized in Tags at the top.
 </details>
 
