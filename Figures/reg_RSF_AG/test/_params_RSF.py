@@ -114,7 +114,7 @@ elif mode == 'I':
 # Set coordinate.
 if not mirror:        # Without mirror.
     lam = 4000.      # Size of computational regeme (m).
-    Nele = 1024        # Total cell number for computation. Power of 2 is nice.
+    Nele = 2048        # Total cell number for computation. Power of 2 is nice.
 
     if mode == 'IV':
         nperi = 1     # Fault replication. Do not change here.
@@ -135,7 +135,7 @@ if not mirror:        # Without mirror.
     # * * * * * * * * * * * * * * * * * #
 else:                 # With mirror.
     lam = 80000.    # Size of computational regime. Mirror part is excluded.
-    Nele = 1024      # Total cell numer for computation.
+    Nele = 2048      # Total cell numer for computation.
     nperi = 2  # At least larger than 2.
 
     if rmPB:

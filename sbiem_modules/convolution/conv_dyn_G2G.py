@@ -1259,10 +1259,10 @@ class Convolution():
     # Update Dell (first step).
     def upt_Dell_first(self, ini, dt):
         ini.Dell += ini.d_Dell * dt
-        return ini
+        return ini.Dell
     
     # Update Dell (second step).
     def upt_Dell_second(self, ini, dt):
         self.keep_dDell = (ini.d_Dell_prv + ini.d_Dell) * 0.5
         ini.Dell = ini.Dell_prv + self.keep_dDell * dt
-        return ini
+        return ini.Dell

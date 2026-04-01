@@ -89,34 +89,31 @@ class Update():
         self.state_ss = self.L / ini.V
         self.decay = - dt / self.state_ss
         
-        tmp = self.tr_expm1(self.decay)
-        ini.state = ini.state * (tmp + 1.) - self.state_ss * tmp
+        ini.state = ini.state * self.tr_exp(self.decay) - self.state_ss * self.tr_expm1(self.decay)
         
         ini.delta += ini.V * dt
         
         ini.tau_ini += self.tau_rate * dt
-        return ini
-  
+        return ini.delta, ini.state, ini.tau_ini
+
 
     # Second time step evolution.
     def second(self, ini, dt): # Note input dt is a given full step, not a half.
         self.decay = self.decay * 0.5
-        tmp = self.tr_expm1(self.decay)
-        ini.state = ini.state_prv * (tmp + 1.) - self.state_ss * tmp
+        ini.state = ini.state_prv * self.tr_exp(self.decay) - self.state_ss * self.tr_expm1(self.decay)
         
         self.state_ss = self.L / ini.keep_V
         self.decay = - (dt * 0.5) / self.state_ss
-        tmp = self.tr_expm1(self.decay)
-        ini.state = ini.state * (tmp + 1.) - self.state_ss * tmp
+        ini.state = ini.state * self.tr_exp(self.decay) - self.state_ss * self.tr_expm1(self.decay)
         
         ini.delta = ini.delta_prv + ini.V * dt
         
         ini.tau_ini += self.tau_rate * dt
-        return ini
+        return ini.delta, ini.state, ini.tau_ini
 
 
     # Take average of velocity.
     def ave(self, ini):
         ini.keep_V = ini.V.clone()
         ini.V = (ini.V_prv + ini.V) * 0.5
-        return ini
+        return ini.keep_V, ini.V

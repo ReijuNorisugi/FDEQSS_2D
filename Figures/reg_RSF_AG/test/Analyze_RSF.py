@@ -495,7 +495,7 @@ if Trajectory:
                             top=True, labeltop=False, 
                             right=True, labelright=False)
             plt.tight_layout()
-            plt.savefig('{}Figures{}Trajectory/Tau_Slip/TS_{}.png'.format(rel, fname, stat), dpi=600)
+            plt.savefig('{}Figures{}Trajectory/Tau_slip/TS_{}.png'.format(rel, fname, stat), dpi=600)
             
             plt.close()
             

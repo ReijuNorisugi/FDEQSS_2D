@@ -39,7 +39,7 @@ It supports rapid prototyping of new physical models and is suitable for large-s
 
 ### Boundary Conditions
 - Infinite space
-- Half-infinite space
+- Half space
 
 ### Geometry
 - Flat fault
@@ -48,7 +48,7 @@ It supports rapid prototyping of new physical models and is suitable for large-s
 - Mode I (opening)
 - Mode II (in-plane problem)
 - Mode III (anti-plane problem)
-- Mode IV (crustal plane model)
+- Crustal plane model
 
 ### On-fault Constitutive Laws
 - RSF law, **regularized form** with aging law

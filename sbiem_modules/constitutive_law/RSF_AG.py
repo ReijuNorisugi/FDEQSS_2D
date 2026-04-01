@@ -11,11 +11,15 @@ import torch as tr
 
 # Class for iterative solvers of the non-linear equation.
 class Solver():
+    """
+    Iterative solver for slip rate prediction.
+    Halley's method is employed.
+    """
     def __init__(self, Devices, Conditions, Medium, FaultParams, FieldVariables):
         device = Devices['device_1']
         
         # Conditions for iteration.
-        self.max_rep = int(1.e4)      # Max iteration of solvers.
+        self.max_rep = int(1.e4) # Max iteration of solvers.
         self.epsilon = 1.e-14  # Convergence criteria.
         self.epsilon = tr.tensor(self.epsilon, dtype=tr.float64, device=device)
         
@@ -87,7 +91,7 @@ class Update():
         ini.delta += ini.V * dt
         
         ini.tau_ini += self.tau_rate * dt
-        return ini
+        return ini.delta, ini.state, ini.tau_ini
   
 
     # Second time step evolution.
@@ -102,11 +106,11 @@ class Update():
         ini.delta = ini.delta_prv + ini.V * dt
         
         ini.tau_ini += self.tau_rate * dt
-        return ini
+        return ini.delta, ini.state, ini.tau_ini
 
 
     # Take average of velocity.
     def ave(self, ini):
         ini.keep_V = ini.V.clone()
         ini.V = (ini.V_prv + ini.V) * 0.5
-        return ini
+        return ini.keep_V, ini.V

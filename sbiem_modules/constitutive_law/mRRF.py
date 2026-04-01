@@ -86,34 +86,31 @@ class Update():
         self.state_ss = self.betakYbar / (self.alpha*self.tr_reshape(ini.V, (self.ncell, 1))+self.betak)
         self.decay = - (self.betakkYbar / self.state_ss) * dt
 
-        tmp = self.tr_expm1(self.decay)
-        ini.state = ini.state * (tmp + 1.) - self.state_ss * tmp
+        ini.state = ini.state * self.tr_exp(self.decay) - self.state_ss * self.tr_expm1(self.decay)
         
         ini.delta += ini.V * dt
         
         ini.tau_ini += self.tau_rate * dt
-        return ini
+        return ini.delta, ini.state, ini.tau_ini
 
   
     # Second time evolution step, 2nd-order accuracy.
     def second(self, ini, dt): # Note input dt is full time step, not a half.
         self.decay = self.decay * 0.5
-        tmp = self.tr_expm1(self.decay)
-        ini.state = ini.state_prv * (tmp + 1.) - self.state_ss * tmp
+        ini.state = ini.state_prv * self.tr_exp(self.decay) - self.state_ss * self.tr_expm1(self.decay)
 
         self.state_ss = self.betakYbar / (self.alpha*self.tr_reshape(ini.keep_V, (self.ncell, 1))+self.betak)
         self.decay = - (self.betakkYbar / self.state_ss) * dt * 0.5
-        tmp = self.tr_expm1(self.decay)
-        ini.state = ini.state * (tmp + 1.) - self.state_ss * tmp
+        ini.state = ini.state * self.tr_exp(self.decay) - self.state_ss * self.tr_expm1(self.decay)
         
         ini.delta = ini.delta_prv + ini.V * dt
         
         ini.tau_ini += self.tau_rate * dt
-        return ini
+        return ini.delta, ini.state, ini.tau_ini
 
 
     # Take average of velocity.
     def ave(self, ini):
         ini.keep_V = ini.V.clone()
         ini.V = (ini.V_prv + ini.V) * 0.5
-        return ini
+        return ini.keep_V, ini.V

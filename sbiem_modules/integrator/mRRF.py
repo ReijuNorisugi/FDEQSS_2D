@@ -59,8 +59,8 @@ class Heun():
     # Function for one time step evolution, 2nd-order accuracy.
     def guess(self, update, ker, cv, pr, ti, dt, dt_, first, second, store):
         # Update delta, state, Dell, and tau_ini.
-        self = update.first(self, dt)
-        self = cv.upt_Dell_first(self, dt)
+        self.delta, self.state, self.tau_ini = update.first(self, dt)
+        self.Dell = cv.upt_Dell_first(self, dt)
         
         # Convolution.
         self.f = cv.exe_conv(ker, self.Dell, self.d_Dell, dt, first)
@@ -77,8 +77,8 @@ class Heun():
         self = update.ave(self)
         
         # Update delta, state, Dell, and tau_ini.
-        self = update.second(self, dt)
-        self = cv.upt_Dell_second(self, dt)
+        self.keep_V, self.V = update.second(self, dt)
+        self.Dell = cv.upt_Dell_second(self, dt)
         
         # Convolution, utilize the first convolution.
         self.f = cv.exe_conv(ker, self.Dell, cv.keep_dDell, dt, second)
