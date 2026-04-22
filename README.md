@@ -55,9 +55,10 @@ It supports rapid prototyping of new physical models and is suitable for large-s
 
 
 ## Citation
->When you use this code for your research,
->please cite this repository as follows:
->Norisugi, R. (2026). *FDEQSS_2D: Fully Dynamic Earthquake Sequence Simulation code*. Zenodo. https://doi.org/10.5281/zenodo.19689610
+When you use this code for your research,
+please cite this repository as follows:  
+
+Norisugi, R. (2026). *FDEQSS_2D: Fully Dynamic Earthquake Sequence Simulation code*. Zenodo. https://doi.org/10.5281/zenodo.19689610
 
 <details>
 <summary><h2>Installation</h2></summary>
