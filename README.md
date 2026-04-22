@@ -25,7 +25,6 @@ The numerical scheme is mainly based on previous works:
 
 This code is designed for **research use**, with a focus on:
 
-- Flexibility
 - Reproducibility
 - Computational efficiency
 
