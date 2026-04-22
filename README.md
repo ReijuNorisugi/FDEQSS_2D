@@ -58,7 +58,7 @@ It supports rapid prototyping of new physical models and is suitable for large-s
 When you use this code for your research,
 please cite this repository as follows:  
 
-- Norisugi, R. (2026). *FDEQSS_2D: Fully Dynamic Earthquake Sequence Simulation code*. Zenodo. https://doi.org/10.5281/zenodo.19689610
+- Norisugi, R. (2026). *FDEQSS_2D: Fully Dynamic Earthquake Sequence Simulation code*. https://doi.org/10.5281/zenodo.19689610
 
 If you use the rate- and roughness-dependent friction law,
 plwase cite the following paper to be published soon:  
